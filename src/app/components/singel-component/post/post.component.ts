@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../../../models/Post';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -10,9 +11,12 @@ export class PostComponent implements OnInit {
   @Input()
   post: Post;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(value => value.xxx
+    );
+  }
 
-  ngOnInit(): void {
+  ngOnInit(){
   }
 
 }

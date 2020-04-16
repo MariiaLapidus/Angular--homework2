@@ -14,7 +14,7 @@ export class AllUsersComponent implements OnInit {
     this.users = this.activatedRoute.snapshot.data.list;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

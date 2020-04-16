@@ -14,13 +14,22 @@ import {CommentResolverService} from './services/resolvers/comment-resolver.serv
 import { UserComponent } from './components/singel-component/user/user.component';
 import { PostComponent } from './components/singel-component/post/post.component';
 import { CommentComponent } from './components/singel-component/comment/comment.component';
+import {CommentsResolverService} from './services/resolvers/comments-resolver.service';
 
 const routes = [
   {path: '', component: HelloComponent},
-  {path: 'users', component: AllUsersComponent, resolve: {list: UserResolverService}},
-  {path: 'posts', component: AllPostsComponent, resolve: {list: PostResolverService}},
-  {path: 'comments', component: AllCommentsComponent, resolve: {list: CommentResolverService}},
-]
+  {
+    path: 'users', component: AllUsersComponent, resolve: {list: UserResolverService}, children: [
+        {path: ':id/posts', component: AllPostsComponent}]},
+  {path: 'posts', component: AllPostsComponent, resolve: {list: PostResolverService}, children: [
+      {path: 'id/comments', component: AllCommentsComponent, resolve: {comments: CommentsResolverService}}
+    ]},
+  {
+    path: 'comments', component: AllCommentsComponent, resolve: {list: CommentResolverService}, children: [
+      {path: ':xxx/post', component: PostComponent}
+    ]
+  }
+];
 
 @NgModule({
   declarations: [

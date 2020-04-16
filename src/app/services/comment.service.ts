@@ -13,4 +13,8 @@ export class CommentService {
   getAllData(): Observable<CommentModel[]>{
     return this.httpClient.get<CommentModel[]>(this.API + 'comments');
   }
+
+  getAllCommentsOfPosts(id): Observable<CommentModel[]>{
+    return this.httpClient.get<CommentModel[]>(this.API + `comments?postId=${id}`);
+  }
 }

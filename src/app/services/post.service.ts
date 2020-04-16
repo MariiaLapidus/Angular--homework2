@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Post} from '../models/Post';
+import {observableToBeFn} from 'rxjs/internal/testing/TestScheduler';
 
 
 @Injectable({
@@ -12,5 +13,8 @@ export class PostService {
   constructor(private httpClient: HttpClient) { }
   getAllData(): Observable<Post[]>{
     return this.httpClient.get<Post[]>(this.API + 'posts');
+  }
+  getUsersPost(id): Observable<Post[]> {
+    return this.httpClient.get<Post[]>(this.API + `posts?userId=${id}`);
   }
 }

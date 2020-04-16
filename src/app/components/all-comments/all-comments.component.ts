@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommentModel} from '../../models/CommentModel';
+import {CommentService} from '../../services/comment.service';
 
 @Component({
   selector: 'app-all-comments',
@@ -8,10 +9,14 @@ import {CommentModel} from '../../models/CommentModel';
   styleUrls: ['./all-comments.component.css']
 })
 export class AllCommentsComponent implements OnInit {
-  comments: CommentModel[];
+   comments: CommentModel[];
 
   constructor(private activatedRoute: ActivatedRoute) {
-   this.comments = this.activatedRoute.snapshot.data.list;
+   // this.comments = this.activatedRoute.snapshot.data.list;
+    console.log('list', this.activatedRoute.snapshot.data.list);
+    this.activatedRoute.data.subscribe(value => {
+      this.comments = value.comments;
+    });
   }
 
   ngOnInit(): void {

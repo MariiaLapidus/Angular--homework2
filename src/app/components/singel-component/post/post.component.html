@@ -1,4 +1,5 @@
 <div>
-  <h3>{{post.id}}   {{post.title}}</h3>
+  <h3>{{post.id}}  {{post.title}}</h3>
   <div>{{post.body}}</div>
+  <button><a [routerLink]="[post.id, 'comments']" [queryParams]="{postId: post.id}">Comments to this post</a></button>
 </div>
