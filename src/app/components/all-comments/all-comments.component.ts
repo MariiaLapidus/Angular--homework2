@@ -10,12 +10,14 @@ import {CommentService} from '../../services/comment.service';
 })
 export class AllCommentsComponent implements OnInit {
    comments: CommentModel[];
+  private value: CommentModel[];
 
   constructor(private activatedRoute: ActivatedRoute) {
    // this.comments = this.activatedRoute.snapshot.data.list;
     console.log('list', this.activatedRoute.snapshot.data.list);
     this.activatedRoute.data.subscribe(value => {
-      this.comments = value.comments;
+      console.log(value)
+      this.comments = value.list;
     });
   }
 

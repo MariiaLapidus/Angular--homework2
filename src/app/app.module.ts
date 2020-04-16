@@ -22,7 +22,7 @@ const routes = [
     path: 'users', component: AllUsersComponent, resolve: {list: UserResolverService}, children: [
         {path: ':id/posts', component: AllPostsComponent}]},
   {path: 'posts', component: AllPostsComponent, resolve: {list: PostResolverService}, children: [
-      {path: 'id/comments', component: AllCommentsComponent, resolve: {comments: CommentsResolverService}}
+      {path: ':id/comments', component: AllCommentsComponent, resolve: {comments: CommentsResolverService}}
     ]},
   {
     path: 'comments', component: AllCommentsComponent, resolve: {list: CommentResolverService}, children: [
